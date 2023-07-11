@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="cotainer mt-3">
+
+            <h1>Lista de Produtos</h1>
+            <a href="{{ url_for('update_product', id=0) }}" class="btn btn-primary">Adicionar</a>
+
+            <hr>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Imagem: </th>
+                        <th>ID: </th>
+                        <th>Nome: </th>
+                        <th>Preço: </th>
+                        <th>Promoção: </th>
+                        <th>Descrição: </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for id, nome, preco, promocao, descricao, imagem in products %}
+                        <tr>
+                            <td>
+                                <div style="width: 200px; height: 250px; overflow: hidden; position: relative;" class="img-thumbnail">
+                                    <img src="{{ imagem }}" alt="thumbnail" style="min-width: 100%; max-height: 100%; position: absolute; left:50%; top:50%; transform:translate(-50%,-50%);">
+                                </div>
+                            </td>
+                            <td>{{ id }}</td>
+                            <td>{{ nome }}</td>
+                            <td>{{ preco }}</td>
+                            <td>{{ promocao }}</td>
+                            <td>{{ descricao }}</td>
+                            <td><a href="{{url_for('update_product', id=id)}}">Editar</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+    </div>
+{% endblock %}

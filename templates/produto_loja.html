@@ -1,0 +1,63 @@
+{% extends 'navbar_loja.html' %}
+
+{% block content %}  
+    
+    <!--Main layout-->
+    <main class="">
+        <div class="container mt-4">
+            <p class="lead font-weight-bold ms-5"><span class="text-primary"><b>Você está em: </b></span><a href="{{ url_for('home_loja') }}" style="text-decoration: none; color: black;">Página Inicial</a> / {{ nome }}</p>
+        </div>
+        <div class="container dark-grey-text mt-4">
+            <!--Grid row-->
+            <div class="row wow fadeIn">
+                <!--Grid column-->
+                <div class="col-md-6 mb-4">
+                    <img src="{{imagem}}" class="img-fluid" alt="">
+                </div>
+                <!--Grid column-->
+                <!--Grid column-->
+                <div class="col-md-6 mb-4">
+                    <!--Content-->
+                    <div class="p-4">
+                        <div class="mb-3">
+                        <h2>{{nome}}</h2>
+                        </div>
+                        <p class="lead font-weight-bold">Código: {{ id }}</p>
+                        <p class="lead">
+                        <span class="mr-1">
+                            <del>R${{preco}}</del>
+                        </span>
+                        <span>R${{promocao}}</span>
+                        </p>
+                        <p class="lead font-weight-bold">Descrição</p>
+                        <p>
+                            {{descricao}}
+                        </p>
+                        <form class="d-flex justify-content-left" method="post" action="{{ url_for('adicionar_excluir_carrinho') }}">
+                            <input type="hidden" name="id" value="{{ id }}">
+                            <input type="hidden" name="nome" value="{{ nome }}">
+                            <input type="hidden" name="preco" value="{{ preco }}">
+                            <input type="hidden" name="promocao" value="{{ promocao }}">
+                            <input type="hidden" name="descricao" value="{{ descricao }}">
+                            <input type="hidden" name="imagem" value="{{ imagem }}">
+                            <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
+                            <button class="btn btn-primary btn-md my-0 p" type="submit">Adicionar ao Carrinho
+                                <i class="fas fa-shopping-cart ml-1"></i>
+                            </button>
+
+                        </form>
+
+                    </div>
+                    <!--Content-->
+
+                </div>
+                <!--Grid column-->
+
+            </div>
+            <!--Grid row-->
+
+            <hr>
+        </div>
+    </main>
+
+{% endblock %}

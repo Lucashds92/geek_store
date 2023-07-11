@@ -1,0 +1,36 @@
+{% extends 'navbar_loja.html' %}
+{% block content %}
+    <!--Main layout-->
+    <main class="container-sm">
+        <div class="container dark-grey-text mt-5">
+            <!--Grid row-->
+            <div class="row wow fadeIn">
+                <!--Grid column-->
+                <div class="col-md-6 mb-4 d-flex justify-content-center">
+                    <img src="{{ url_for('static', filename='assets/1.png')}}" class="img-fluid" style="max-width: 350px;" alt="">
+                </div>
+                <!--Grid column-->
+                <!--Grid column-->
+                <div class="col-md-6 mb-4">
+                    <!--Content-->
+                    <div class="p-4">
+                        <div class="mb-3">
+                        <h2>Nada por aqui, galerinha! Seu carrinho tá zerado!</h2>
+                        </div>
+                        <p class="lead font-weight-bold">Bora navegar pelo nosso site e encontrar o que mais combina com você? A diversão é garantida!</p>
+                        
+                        <a href="{{ url_for('home_loja') }}" class="btn btn-primary text-center">Página Inicial</a>
+
+                    </div>
+                    <!--Content-->
+
+                </div>
+                <!--Grid column-->
+
+            </div>
+            <!--Grid row-->
+
+            <hr>
+        </div>
+    </main>
+{% endblock %}

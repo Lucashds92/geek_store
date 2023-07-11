@@ -1,0 +1,52 @@
+{% extends 'navbar_loja.html' %}
+{% block content %}
+    <div class="container mt-4">
+        <p class="lead font-weight-bold ms-5"><span class="text-primary"><b>Você está em: </b></span><a href="{{ url_for('home_loja') }}" style="text-decoration: none; color: black;">Página Inicial</a> / Carrinho</p>
+    </div>
+    <div class="container-lg">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Código</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Preço</th>
+                <th scope="col" style="width: 5px;"></th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for id, nome, promocao in products %}
+                    <tr>
+                        <th scope="row">{{ id }}</th>
+                        <td>{{ nome }}</td>
+                        <td>R$ {{ promocao }}</td>
+                        <td style="display: flex; justify-content: flex-end; width: 5px;">
+                            <form action="{{ url_for('adicionar_excluir_carrinho') }}" method="post" style="width: fit-content;">
+                                <!--<a href=" url_for('excluir_produto_carrinho') " class="text-danger text-decoration-none"><i class="bi bi-x-square-fill"></i></a>
+                                <input type="submit" class="btn btn-danger" name="excluir" value="Excluir">
+                                -->
+                                <input type="hidden" name="id" value="{{ id }}">
+                                <button type="submit" name="excluir" class="text-danger" style="border: none; background-color: white;">
+                                    <i class="bi bi-x-square-fill"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr style="height: 100px;">
+                    <th colspan="2">TOTAL:</th>
+                    <th>R$ {{ total }}</th>
+                </tr>
+                <tr style="height: 50px;">
+                    <td colspan="3"></td>
+                    <td style="display: flex; justify-content: flex-end;width: 5px;">
+                        <form action="{{ url_for('adicionar_excluir_carrinho') }}" method="post">
+                            <input class="btn btn-primary" type="submit" name="finalizar" value="FINALIZAR COMPRA">
+                        </form>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+{% endblock %}
